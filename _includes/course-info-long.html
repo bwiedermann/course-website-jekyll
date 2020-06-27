@@ -1,0 +1,51 @@
+{% assign course = site.data.course %}
+
+<table class="course-info">
+  <col class="name"><col name="details">
+  <tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Course title:</th>
+      <td>{{ course.title }}</td>
+    </tr>
+    </tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Website:</th>
+      <td><a href="{{course.shortURL}}">{{course.shortURL}}</a></td>
+    </tr>
+    </tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Professors:</th>
+      <td>
+        <ul class="instructors">
+          {% for instructor in course.instructors %}
+          <li>
+            {{ instructor.name }} ({{instructor.email}})
+          </li>
+          {% endfor %}
+        </ul>        
+      </td>
+    </tr>
+    </tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Prerequisites:</th>
+      <td>{{course.prerequisites}}</td>
+    </tr>
+    </tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Credit hours:</th>
+      <td>{{course.credits}}</td>
+    </tr>
+    </tbody>
+    <tbody role="rowgroup">
+    <tr>
+      <th scope="row">Textbook(s):</th>
+      <td>{{course.textbooks}}</td>
+    </tr>
+    </tbody>
+  </tbody>
+</table>

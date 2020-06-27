@@ -1,0 +1,58 @@
+aside, aside p {
+}
+
+aside {
+  @extend .sidenote;
+
+  width: 25%;
+  margin: 0;
+  right: -7%;
+  font-size: .80rem;
+  line-height: 1.3em;
+
+  p, MathJax {
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+  img {
+    padding: 5px;
+  }
+
+  figcaption {
+    all: unset;
+    font-style: italic;
+  }
+
+  &::before {
+    content: "";
+  }
+
+  &.warning {
+    background-color: lightyellow;
+    padding: 10px;
+
+    &::before {
+      content: "⚠";
+      font-size: 1.5rem;
+      color: $text-color;
+    }
+  }
+
+  code {
+    font-size: .80rem;
+    line-height: 1.3em;
+  }
+}
+
+@media (max-width: 760px) {
+  .sidenote,
+  .marginnote {
+    display: block;
+    float: none;
+    width: 100%;
+    margin: 5px 0px;
+    padding: 10px;
+    border: 1px solid lightgray;
+  }
+}

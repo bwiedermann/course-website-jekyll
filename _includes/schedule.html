@@ -1,0 +1,150 @@
+{% assign dates       = site.data.schedule.dates       %}
+{% assign lectures    = site.data.schedule.lectures    %}
+{% assign labs        = site.data.schedule.labs        %}
+{% assign assignments = site.data.schedule.assignments %}
+{% assign exams       = site.data.schedule.exams       %}
+
+
+<table class="schedule" role="table">
+  <caption>
+  Below is the schedule of topics and deadlines for the course. The links will become active
+  as the semester progresses. The schedule of topics is subject to change. If any deadlines
+  change, we will let you know!
+  </caption>
+  <col class="week"><col class="date"><col class="topic"><col class="deadlines">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Date</th>
+      <th>Topic</th>
+      <th>Assignment / Exam</th>
+    </tr>
+  </thead>
+    {% for i in (1..14) %}
+
+      {% if site.data.course.semester == "spring" and i == site.data.course.spring-break-week %}
+      <tbody class="spring-break week" role="rowgroup">
+        <tr role="row" class="week">
+          <th scope="row" role="rowheader" colspan="4">
+            Spring Break
+          </th>
+        </tr>
+      </tbody>
+      {% endif %}
+
+      <tbody class="week" role="rowgroup">
+      {% assign class1Label = 'Week' | append: i | append: 'Class1' %}
+      {% assign class1 = lectures | where: 'Label', class1Label | first %}
+      {% assign class1Date = dates | where: 'Label', class1.Date | first %}
+
+      {% assign class2Label = 'Week' | append: i | append: 'Class2' %}
+      {% assign class2 = lectures | where: 'Label', class2Label | first %}
+      {% assign class2Date = dates | where: 'Label', class2.Date | first %}
+
+      {% assign lab = labs | where: 'Week', i | first %}
+      {% assign labDate = dates | where: 'Label', lab.Date | first %}
+
+      {% assign hws = assignments | where: 'Week', i %}
+
+      {% assign tests = exams | where: 'Week', i %}
+
+      <!-- WEEK {{ i }} -->
+      <tr role="row" class="week">
+        <th scope="row" role="rowheader" class="week-num" rowspan="{{ 3 }}">Week
+          {{ i }}</th>
+      
+        <!-- Week {{ i }} Class 1 -->        
+        <td class="class-date">{{ class1Date.Date | date: "%A, %B %d" }}</td>
+        <td class="class-details">
+          {% if class1.URL && class1.URL.size > 0 %}
+          Class: <a href="{{ class1.URL }}">
+          {% endif %}
+            {{ class1.Title }}
+          {% if class1.URL %}
+          </a>
+          {% endif %}
+          
+          <span class="class-description">{{ class1.Description }}</span>
+        </td>
+
+        <td class="deadlines" rowspan="3">
+
+          {% if hws.size > 0 %}
+          <!-- Week {{ i }} assignment(s) -->
+          <ul class="assignments">
+          {% for hw in hws %}
+            {% assign hwDueDate = dates | where: 'Label', hw.Due_date | first %}
+            {% assign dueAt = hwDueDate.Date | date: "%A, %B %d" | append: " at " | append: hw.Due_time  %}
+            
+            <li class="hw-title">
+              HW {{ hw.HW_Number }}: <a href="{{ hw.URL }}">{{ hw.Title }}</a>
+              <span class="hw-details">due <span class="due-date">{{ dueAt }}</span></span>
+            </li>
+
+          {% endfor %}
+          {% endif %}
+          </ul>
+
+          {% if tests.size > 0 %}
+          <!-- Week {{ i }} exam(s) -->
+          <ul class="exams">
+            {% for test in tests %}
+            {% comment %}
+            TODO: This code assumes the exam is take-home.
+            {% endcomment %}
+            {% assign availableDate = dates | where: 'Label', test.Available | first %}
+            {% assign dueDate = dates | where: 'Label', test.Due_date | first %}
+            {% assign dueAt = dueDate.Date | date: "%A, %B %d" | append: " at " | append: test.Due_time  %}
+
+            <li class="exam-title">
+              Exam{{ hw.HW_Number }}: <a href="{{ test.URL }}">{{ test.Name }}</a>
+              <span class="exam-details">
+                available {{ availableDate.Date | date:"%A, %B %d" }} <br />
+                due <span class="due-date">{{ dueAt }}
+                </span>
+            </li>
+
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+          
+        </td>
+      </tr>
+
+      <!-- Week {{ i }} Lab -->
+      <tr role="row" class="week">
+        <td class="lab-date">{{ labDate.Date | date: "%A, %B %d" }}</td>
+        <td class="lab-details">
+          {% if lab.URL %}
+          Lab: <a href="{{ lab.URL }}">
+          {% endif %}
+            {{ lab.Title }}
+          {% if lab.URL %}          
+          </a>
+          {% endif %}
+          
+          {% if lab.Description %}
+            <span class="lab-description">{{ lab.Description }}</span>
+          {% endif %}
+        </td>
+      </tr>
+
+      <!-- Week {{ i }} Class 2 -->
+      <tr role="row" class="week">
+        <td class="class-date">{{ class2Date.Date | date: "%A, %B %d" }}</td>
+        <td class="class-details">
+          {% if class2.URL %}
+          Class: <a href="{{ class2.URL }}">
+          {% endif %}
+            {{ class2.Title }}
+          {% if class2.URL %}
+          </a>
+          {% endif %}
+          
+          <span class="class-description">{{ class2.Description }}</span></td>
+      </tr>
+
+    </tbody>
+    {% endfor %}
+</table>

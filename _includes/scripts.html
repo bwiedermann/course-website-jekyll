@@ -1,0 +1,45 @@
+  <!-- TOCbot -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+  <script>
+    tocbot.init({
+      // Where to render the table of contents.
+      tocSelector: '.toc-wrapper',
+      // Where to grab the headings to build the table of contents.
+      contentSelector: 'article',
+      // Which headings to grab inside of the contentSelector element.
+      headingSelector: 'h1, h2',
+      // Which headings to ignore.
+      ignoreSelector: '.js-toc-ignore',
+      // Main class to add to lists.
+      listClass: 'table-of-contents',
+      // Extra classes to add to lists.
+      // extraListClasses: 'section',
+      // How many heading levels should not be collapsed.
+      // For example, number 6 will show everything since
+      // there are only 6 heading levels and number 0 will collapse them all.
+      // The sections that are hidden will open
+      // and close as you scroll to headings within them.
+      collapseDepth: 0,
+      // orderedList can be set to false to generate unordered lists (ul)
+      // instead of ordered lists (ol)
+      orderedList: true,
+    });
+  </script>
+
+  <!-- MathJAX -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        extensions: ["tex2jax.js", "TeX/AMSsymbols.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\$","\$"] ],
+          displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+          processEscapes: true
+        },
+        "HTML-CSS": { fonts: ["TeX"] }
+      });
+    </script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js' async></script>
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/5b5f49647e.js" crossorigin="anonymous"></script>

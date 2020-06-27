@@ -1,0 +1,16 @@
+--- 
+# this ensures Jekyll reads the file to be transformed into CSS later 
+# only Main files contain this front matter, not partials. 
+---
+
+@import "base";
+@import "schedule";
+@import "masthead";
+
+// additional elements
+.your-task {
+  font-weight: bold;
+  background-color: #f9e79f;
+  padding: 7px 5px;
+  margin-right: 7px;
+}

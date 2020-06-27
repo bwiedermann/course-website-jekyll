@@ -1,0 +1,59 @@
+@import "lists";
+
+div.masthead {
+  @include clean-ul;
+
+  margin-bottom: 10px;
+
+  width: $element-width;
+
+  h1 a {
+    color: $text-color;
+    text-decoration: none;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    top: -.5rem;
+    position: relative;
+  }
+  
+  ul.sections {
+    font-size: .8rem;
+    margin-left: 0;
+    padding-top: 5px;
+    li {
+      margin: 0;
+      line-height: 1.2rem;
+    }
+  }
+
+  nav {
+    @include line-lists;
+    li {
+      font-size: 1rem;
+    }
+  }
+
+  border-bottom: 1px solid #acacac;
+}
+
+#sidebar {
+  padding-left: 20px;
+  div.course-info {
+    @include sidenav;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 5px 0;
+  }
+  h2 {
+    font-size: 1.6rem;
+    margin: 0;
+  }
+  ul {
+    margin-left: 0;
+  }
+}

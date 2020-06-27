@@ -1,0 +1,120 @@
+/** Overrides for the styles in the provided Tufte files **/
+
+// Give headings some breathing room
+h1,
+h2,
+h3 {
+  line-height: 1;
+  width: 100%;
+}
+
+// Because we don't want to add a table-wrapper div :(
+table {
+  @extend .booktabs;
+  @extend .text-element;
+  margin: 20px 0px;
+}
+
+table.twoColumns {
+  table-layout: fixed;
+  width: 100%;
+  td {
+    width: 50%;
+    padding-bottom: 10px;    
+    line-height: revert;
+    vertical-align: top;
+  }
+}
+
+// Give code blocks some breathing room
+pre {
+  overflow-x: visible;
+}
+
+pre,
+pre code,
+p pre code {
+  padding-left: 0;
+}
+
+figure {
+  margin: 2em 0;
+
+  img {
+    display: block;
+    margin: auto;
+    width: 90%;
+  }
+}
+
+figcaption {
+  all: unset;
+  display: block;
+  margin-top: 1em;
+  font-style: italic;
+}
+
+
+/** For printing **/
+@media print {
+   @page {
+     margin-top: 0.5in;
+     margin-bottom: 0.5in;
+     orphans: 4;
+     widows: 2;
+   }
+  #sidebar, #MathJax_Message {
+    display: none;
+  }
+
+  #content {
+    // position: relative;
+    left: .5in !important;
+    // top: .5in !important;
+    // height: 10.5in !important;
+  }
+
+  body {
+    margin: 0.25in 0.5in;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    // padding-left: 12.5%;
+  }
+
+  p,
+  a,
+  ol,
+  ul,
+  aside,
+  figcaption,
+  .MathJax_Display,
+  pre,
+  pre code,
+  p code,
+  p pre code {
+    // $element-width: 100% !default;
+    // width: 100%;
+    font-size: 1rem;
+  }
+
+  p, li {
+    line-height: 1.2rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;    
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  // a[href]:after {
+  //   content: " ("attr(href) ")";
+  // }
+}

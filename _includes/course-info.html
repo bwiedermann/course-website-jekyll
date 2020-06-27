@@ -1,0 +1,8 @@
+{% assign course = site.data.course %}
+
+<div class="course-info">
+  <h1>
+    <a href="{{ '/' | relative_url }}">{{ course.title }}</a>
+  </h1>
+  <h2>{{ course.semester | capitalize }} {{ course.year }}</h2>
+</div>

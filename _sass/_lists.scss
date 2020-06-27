@@ -1,0 +1,144 @@
+ul,ol { 
+  width: $element-width;
+  position: relative;
+  margin-left: 5%;
+  -webkit-padding-start: 5%;
+  -webkit-padding-end: 5%;
+}
+
+li p {
+  width: 100%;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal; 
+}
+
+  dt {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+// there must be a better way to do this
+ul.clean-ul {
+  list-style-type: none;
+  padding: 0;
+
+  li {
+    padding: 0;
+  }
+}
+
+@mixin clean-ul {
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      margin: 0;
+    }
+  }
+}
+
+@mixin clean-dl {
+  dl {
+    margin: 0;
+
+    dt {
+      //  margin-top: 10px;
+    }
+
+    dd {
+      margin-left: 0;
+      // font-style: italic;
+      // font-size: small;
+    }
+  }
+}
+
+@mixin bold-dl {
+  dl {
+
+
+    dt {
+      font-weight: bold;
+    }
+
+    dt::after {
+      content: ":  ";
+    }
+
+    dd {
+      display: inline;
+    }
+  }
+}
+
+@mixin inline-dl {
+
+  dd,
+  dt {
+    display: inline;
+    margin: 0;
+  }
+
+  dd+dd:before {
+    content: ', ';
+    /* add comma between definitions */
+  }
+
+  dt:after {
+    content: ':';
+  }
+
+  dt:before {
+    /* insert line break before <dt> */
+    content: "\A";
+    white-space: pre;
+  }
+
+  dt:first-child:before {
+    /* disable line break before the first <dt> */
+    content: none;
+  }
+}
+
+@mixin clean-lists {
+  @include clean-ul;
+  @include clean-dl;
+}
+
+@mixin line-lists {
+  @include clean-ul;
+
+  ul {
+    margin: 0;
+  }
+
+  li {
+    display: inline;
+  }
+
+  // li+li::before {
+  //   padding: 0 .5em;
+  //   content: "\2219";
+  // }
+}
+
+@mixin nested-lists {
+  @include clean-lists;
+
+  ul ul {
+    margin-top: 5px;
+    margin-left: 30px;
+    list-style: outside;
+
+    li {
+      padding-bottom: 10px;
+    }
+  }
+}

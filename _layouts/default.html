@@ -1,1 +1,58 @@
-{{ content }}
+---
+
+---
+
+{% capture courseName %}CS {{ site.data.course.number }} {{ site.data.course.title }}{% endcapture %}
+
+{% capture courseSemester %}{{ site.data.course.semester | capitalize }} {{ site.data.course.year }}{% endcapture %}
+
+{% capture title %}
+{% if page.title %}{{ page.title }}&mdash;{% endif %}{{courseName }}, {{ courseSemester }}
+{% endcapture %}
+
+{% assign sidebar = layout.sidebar %}
+{% if sidebar == nil %}
+  {% assign sidebar = page.sidebar %}
+{% endif %}
+
+{% assign masthead = layout.masthead %}
+{% if masthead == nil %}
+  {% assign masthead = page.masthead %}
+{% endif %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include head.html %}
+  <title> {{ title }}</title>
+</head>
+
+<body>
+
+  <main>
+
+    {% if sidebar %}
+      <div id="sidebar">
+        {% include {{ sidebar }} %}
+      </div>
+    {% endif %}
+
+    <div id="content">
+      {% if masthead %}
+        <header>
+          <div class="masthead">
+            {% include {{ masthead }} %}
+          </div>
+        </header>
+      {% endif %}
+      <article>
+        <h1 class="title js-toc-ignore"> {{ page.title }} </h1>
+        {{ content }}
+      </article>
+    </div>
+  </main>
+
+  {% include scripts.html %}
+</body>
+</html>

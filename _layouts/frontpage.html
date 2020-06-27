@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% include head.html %}
+  <title> CS {{site.data.course.number}} {{site.data.course.title}}, 
+    {{site.data.course.semester | capitalize }} {{site.data.course.year}}
+  </title>
+</head>
+
+<body>
+
+  <main>
+    <div id="sidebar">
+      {% include nav.html %}
+    </div>
+
+    <div id="content">
+      <header>
+        <div class="masthead">
+          {% include course-info.html %}
+        </div>
+      </header>
+      <article>
+        {% include schedule.html %}
+      </article>
+    </div>
+  </main>
+
+  {% include scripts.html %}
+
+</html>

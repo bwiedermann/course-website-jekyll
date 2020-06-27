@@ -1,0 +1,17 @@
+<nav>
+  <ul class="links">    
+    {% for link in site.data.navigation.main %}
+    {% if link.url contains 'http' %}
+    {% assign domain = '' %}
+    {% else %}
+    {% assign domain = site.url | append: site.baseurl %}
+    {% endif %}
+    <li>
+      <a href="{{ domain }}{{ link.url }}" {% if link.description %} title="{{ link.description }}" {% endif %}>
+        {% if link.icon %}<i class="{{ link.icon }}"></i>{% endif %}
+        {{ link.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</nav>

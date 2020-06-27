@@ -1,0 +1,98 @@
+@mixin sidenav {
+
+  ol, ul {
+    font-size: .75rem;
+    list-style-type: none;
+    width: 95%;
+
+    li {
+      margin-top: 0.7em;
+      margin-bottom: 0.7em;
+      padding-left: 10px;
+      line-height: 1rem;
+    }
+  }
+
+  a {
+    color: inherit; 
+    text-decoration: none;
+  }
+
+  .is-active-li {
+    border-left: 1px solid red;
+  }
+
+  .is-collapsed {
+    display: none;
+  }
+}
+
+// To accommodate the side bar
+body {
+  padding: 0;
+  margin: 0;
+}
+
+
+/** Basic layout **/
+#content {
+  width: 75%;
+}
+
+#sidebar {
+  overflow-x: hidden;
+
+  .toc-wrapper, nav {
+    @include sidenav;
+  }
+
+  nav ol, nav ul {
+    font-size: 1rem;
+    li {
+      line-height: 2rem;
+    }
+    i {
+      // margin-right: 5px;
+      text-align: center;
+      width: 2.5rem;
+    }
+    a {
+      color: $link-color;
+
+      transition: color 0.3s ease-in-out;
+      transition-delay: 0s;
+
+      &:hover {
+        color: $link-decoration-color;
+        text-decoration-line: underline;
+        text-decoration-thickness: 1px;
+      }
+    }
+  }
+}
+
+@media (min-width: 760px) {
+  #sidebar {
+    position: fixed;
+    top: 10%;
+    width: 20%;
+  }
+
+  #content {
+    position: relative;
+    left: 30%;
+    margin-bottom: 5em;
+  }
+}
+
+@media (max-width: 760px) {
+  #sidebar {
+    width: 100%;
+  }
+
+  #content {
+    position: relative;
+    left: 5%;
+    width: 100%;
+  }
+}

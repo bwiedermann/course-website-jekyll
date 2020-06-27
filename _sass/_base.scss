@@ -1,0 +1,96 @@
+// Override tufte variables
+$bg-color: #ffffff;
+
+@import "tufte/tufte";
+
+// A helper class for elements that should be part of the main-column text
+.text-element {
+  width: $element-width;
+  padding-right: 2rem;
+}
+
+@import "tufte-overrides";
+@import "variables";
+@import "lists";
+@import "asides";
+@import "sidebar";
+
+/** Overrides for the styles in the provided Tufte files **/
+@media screen and (min-width:  800px){ html{ font-size: $font-size + 1px} }
+@media screen and (min-width:  900px){ html{ font-size: $font-size + 2px} }
+@media screen and (min-width: 1000px){ html{ font-size: $font-size + 3px} }
+@media screen and (min-width: 1100px){ html{ font-size: $font-size + 4px} }
+@media screen and (min-width: 1200px){ html{ font-size: $font-size + 5px} }
+@media screen and (min-width: 1300px){ html{ font-size: $font-size + 6px} }
+
+a, p a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+
+  transition: color 0.3s ease-in-out;
+  transition-delay: 0s;
+
+  &:hover {
+    color: $link-decoration-color;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+  }
+}
+
+/** Additional elements **/
+.MathJax_Display {
+  @extend .text-element;
+  font-size: 1.4rem;
+}
+
+.todo {
+  background-color: #ffc0c0;
+}
+
+table.course-info {
+  @include clean-lists;
+
+  col.name {
+    width: 150px;
+  }
+
+  margin: 10px 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  tr {
+    border: none;
+    vertical-align: top;
+  }
+
+  th {
+    text-align: left;
+    font-weight: bold;
+    border: none;
+  }
+
+  th, td, ul, li {
+    font-size: 1.2rem;
+  }
+
+  ul {
+    position: relative;
+    width: 100%;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 0;
+    padding-left: 0;
+  }
+}
+
+div.footnotes {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid gray;
+  ol, ol p, code {
+    font-size: small;
+    line-height: 1rem;
+  }
+}
