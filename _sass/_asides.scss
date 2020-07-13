@@ -4,10 +4,10 @@ aside, aside p {
 aside {
   @extend .sidenote;
 
-  width: 25%;
+  width: 30%;
   margin: 0;
   right: -7%;
-  font-size: .80rem;
+  // font-size: .80rem;
   line-height: 1.3em;
 
   p, MathJax {

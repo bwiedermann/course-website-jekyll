@@ -36,7 +36,9 @@ body {
 
 /** Basic layout **/
 #content {
-  width: 75%;
+  width: 80%;
+  left: 25% !important;
+  // background-color: blue;
 }
 
 #sidebar {
